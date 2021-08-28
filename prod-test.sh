@@ -1,5 +1,5 @@
 #!/bin/bash
-code=$(curl -s -o /dev/null -w "%{http_code}" 'https://moises-chavez.duckdns.org')
+code=$(curl -s -o /dev/null -w "%{http_code}" 'https://imagecaption.duckdns.org')
 if [[ $code == 200 ]]; then
     exit 0
 else
