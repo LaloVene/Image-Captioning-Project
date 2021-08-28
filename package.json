@@ -32,6 +32,7 @@
     "@ionic/angular": "^5.5.2",
     "@ionic/pwa-elements": "^3.0.2",
     "rxjs": "~6.6.0",
+    "speak-tts": "^2.0.8",
     "statuses": "^2.0.1",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"

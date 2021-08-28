@@ -7,6 +7,16 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
+  <ion-item class="languageContainer">
+    <ion-label>Language</ion-label>
+    <ion-select [(ngModel)]="currentLanguage" (ionChange)="onLanguageChange()" placeholder="Select One" interface="popover">
+      <ion-select-option *ngFor="let language of languages" [value]="language">
+        {{language.name}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
   <img [src]="photo">
 
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
