@@ -1,0 +1,7 @@
+{
+  "name": "Image-Captioning-Project",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
