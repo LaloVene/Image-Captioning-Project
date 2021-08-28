@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
-import { Filesystem, Directory } from '@capacitor/filesystem';
-import { Storage } from '@capacitor/storage';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
