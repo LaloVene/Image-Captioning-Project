@@ -220,12 +220,12 @@ def plot_attention(image, result, attention_plot):
 
 @app.route("/")
 def index():
-    return render_template("index.html", title="Home", url=os.getenv("URL"))
+    return "Works", 200
 
 
 @app.route("/health")
 def health():
-    return "Works"
+    return "Works", 200
 
 
 @app.route("/image", methods=["POST"])
