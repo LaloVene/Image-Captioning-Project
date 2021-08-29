@@ -1,3 +1,11 @@
+#backgroundImg {
+  position: fixed;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  opacity: 40%;
+}
+
 #container {
   text-align: center;
 
@@ -24,6 +32,38 @@
 
 #container a {
   text-decoration: none;
+}
+
+#cameraBtnBackground {
+  position: absolute;
+  z-index: 0;
+  margin-top: 10%;
+  width: 80%;
+  height: 65%;
+  margin-left: 10%;
+  margin-right: 10%;
+  background-color: var(--ion-color-light);
+  border-radius: 6px;
+}
+
+#cameraBtn {
+  position: relative;
+  z-index: 2;
+  margin:0;
+  top: 2.5%;
+  left: 2.5%;
+  width: 95%;
+  height: 95%;
+  opacity: 0.8;
+  border-style: dashed;
+  border-width: 5px;
+  border-color: var(--ion-color-medium);
+}
+
+
+
+#cameraIcon {
+  font-size: 5rem;
 }
 
 .languageContainer {
