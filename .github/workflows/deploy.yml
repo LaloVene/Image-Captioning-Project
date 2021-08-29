@@ -1,0 +1,28 @@
+name: Deploy
+
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the main branch
+  push:
+    branches:
+      - main
+
+jobs:
+  publish-images:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build the Docker api image
+      run: |
+        docker build . --tag ghcr.io/lalovene/image-captioning-api:latest -f dockerfile
+        docker push ghcr.io/lalovene/image-captioning-api:latest

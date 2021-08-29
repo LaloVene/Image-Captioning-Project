@@ -60,7 +60,6 @@ export class HomePage implements OnInit {
   }
 
   async takePicture() {
-    this.speak("Hello World")
     const image = await Camera.getPhoto({
       quality: 100,
       allowEditing: false,
@@ -77,8 +76,7 @@ export class HomePage implements OnInit {
       headers: { 'Content-Type': 'application/json' },
     });
     const data = await res.json();
-    this.speak(data.result);
-    
+    this.translateText(data.result);
   }
 
   async translateText(text: string) {
