@@ -1,14 +1,8 @@
 import tensorflow as tf
-import matplotlib.pyplot as plt
-import collections
-import random
 import numpy as np
-import os
-import time
-import json
 import pickle
 from PIL import Image
-from flask import Flask, render_template, request
+from flask import Flask, request
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -200,24 +194,6 @@ def evaluate(image):
     return result, attention_plot
 
 
-def plot_attention(image, result, attention_plot):
-    temp_image = np.array(Image.open(image))
-
-    fig = plt.figure(figsize=(10, 10))
-
-    len_result = len(result)
-    for i in range(len_result):
-        temp_att = np.resize(attention_plot[i], (8, 8))
-        grid_size = max(np.ceil(len_result / 2), 2)
-        ax = fig.add_subplot(grid_size, grid_size, i + 1)
-        ax.set_title(result[i])
-        img = ax.imshow(temp_image)
-        ax.imshow(temp_att, cmap="gray", alpha=0.6, extent=img.get_extent())
-
-    plt.tight_layout()
-    plt.show()
-
-
 @app.route("/")
 def index():
     return "Works", 200
@@ -229,7 +205,7 @@ def health():
 
 
 @app.route("/image", methods=["POST"])
-def index():
+def getText():
 
     body = request.get_json()
     image_url = str([body["image"]])
