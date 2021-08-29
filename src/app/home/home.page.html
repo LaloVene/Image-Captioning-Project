@@ -17,11 +17,11 @@
     </ion-select>
   </ion-item>
 
-  <img [src]="photo">
 
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button (click)="takePicture()">
+  <ion-fab id="cameraBtnBackground">
+    <!--<img [src]="photo" id="imgPreview" vertical="center" horizontal="center"> -->
+    <ion-button id="cameraBtn" (click)="takePicture()">
       <ion-icon name="camera"></ion-icon>
-    </ion-fab-button>
+    </ion-button>
   </ion-fab>  
 </ion-content>
