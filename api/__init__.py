@@ -208,12 +208,11 @@ def health():
 def getText():
 
     body = request.get_json()
-    image_url = str([body["image"]])
+    image_url = str(body["image"])
     image_extension = image_url[-4:]
     image_path = tf.keras.utils.get_file("image" + image_extension, origin=image_url)
 
     result = evaluate(image_path)
-    Image.open(image_path)
 
     return result
 
