@@ -14,9 +14,15 @@ export class HomePage implements OnInit {
   languages = [
     {
       name: 'English',
+      lang: 'en-US',
+      translateLang: 'en',
+      voice: 'Google US English',
+    },
+    {
+      name: 'English UK',
       lang: 'en-GB',
       translateLang: 'en',
-      voice: 'Google UK English Male',
+      voice: 'Google UK English Female',
     },
     {
       name: 'Español',
@@ -41,6 +47,36 @@ export class HomePage implements OnInit {
       lang: 'it-IT',
       translateLang: 'it',
       voice: 'Google italiano',
+    },
+    {
+      name: 'Português',
+      lang: 'pt-BR',
+      translateLang: 'pt',
+      voice: 'Google português do Brasil',
+    },
+    {
+      name: 'Русский',
+      lang: 'ru-RU',
+      translateLang: 'ru',
+      voice: 'Google हिन्दी',
+    },
+    {
+      name: 'हिन्दी',
+      lang: 'hi-IN',
+      translateLang: 'hi',
+      voice: 'Google हिन्दी',
+    },
+    {
+      name: '日本語',
+      lang: 'ja-JP',
+      translateLang: 'ja',
+      voice: 'Google 日本語',
+    },
+    {
+      name: '日本語',
+      lang: 'zh-CN',
+      translateLang: 'zh',
+      voice: 'Google 普通话（中国大陆）',
     },
   ];
   currentLanguage = this.languages[0];
@@ -71,7 +107,7 @@ export class HomePage implements OnInit {
       method: 'POST',
       body: JSON.stringify({
         format: image.format,
-        image: image.base64String
+        image: image.base64String,
       }),
       headers: { 'Content-Type': 'application/json' },
     });
