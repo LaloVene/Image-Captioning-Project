@@ -4,6 +4,7 @@ import pickle
 from PIL import Image
 from flask import Flask, request, jsonify
 from dotenv import load_dotenv
+import base64
 
 load_dotenv()
 app = Flask(__name__)
@@ -36,7 +37,7 @@ max_length = 48
 # These two variables represent that vector shape
 features_shape = 2048
 # loading
-with open("tokenizer.pickle", "rb") as handle:
+with open("api/tokenizer.pickle", "rb") as handle:
     tokenizer = pickle.load(handle)
 
 
@@ -150,17 +151,6 @@ def loss_function(real, pred):
     return tf.reduce_mean(loss_)
 
 
-checkpoint_path = "./checkpoint"
-ckpt = tf.train.Checkpoint(encoder=encoder, decoder=decoder, optimizer=optimizer)
-ckpt_manager = tf.train.CheckpointManager(ckpt, checkpoint_path, max_to_keep=5)
-
-start_epoch = 0
-if ckpt_manager.latest_checkpoint:
-    start_epoch = int(ckpt_manager.latest_checkpoint.split("-")[-1])
-    # restoring the latest checkpoint in checkpoint_path
-    ckpt.restore(ckpt_manager.latest_checkpoint)
-
-
 def evaluate(image):
     attention_plot = np.zeros((max_length, attention_features_shape))
 
@@ -173,11 +163,15 @@ def evaluate(image):
     )
 
     features = encoder(img_tensor_val)
+    encoder.load_weights('api/encoderW.h5')
+    features = encoder(img_tensor_val)
 
     dec_input = tf.expand_dims([tokenizer.word_index["<start>"]], 0)
     result = []
 
     for i in range(max_length):
+        predictions, hidden, attention_weights = decoder(dec_input, features, hidden)
+        decoder.load_weights('api/decoderW.h5')
         predictions, hidden, attention_weights = decoder(dec_input, features, hidden)
 
         attention_plot[i] = tf.reshape(attention_weights, (-1,)).numpy()
@@ -208,11 +202,18 @@ def health():
 def getText():
 
     body = request.get_json()
-    image_url = str(body["image"])
-    image_extension = image_url[-4:]
-    image_path = tf.keras.utils.get_file("image" + image_extension, origin=image_url)
+    image_base64 = str(body["image"])
+    
+    metadata, raw_image = image_base64.split(',')
+    raw_image_bytes = raw_image.encode('utf-8')
 
-    result, _ = evaluate(image_path)
+    file_extension = metadata.split(';')[0].split('/')[-1]
+    file_name = 'imageToSave'    + file_extension
+
+    with open(file_name, "wb") as fh:
+        fh.write(base64.decodebytes(raw_image_bytes))
+
+    result, _ = evaluate(file_name)
 
     return jsonify({"result": ' '.join(result)}), 200
 
