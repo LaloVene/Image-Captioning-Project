@@ -164,7 +164,7 @@ def evaluate(image):
     )
 
     features = encoder(img_tensor_val)
-    encoder.load_weights('api/encoderW.h5')
+    encoder.load_weights("api/encoderW.h5")
     features = encoder(img_tensor_val)
 
     dec_input = tf.expand_dims([tokenizer.word_index["<start>"]], 0)
@@ -172,7 +172,7 @@ def evaluate(image):
 
     for i in range(max_length):
         predictions, hidden, attention_weights = decoder(dec_input, features, hidden)
-        decoder.load_weights('api/decoderW.h5')
+        decoder.load_weights("api/decoderW.h5")
         predictions, hidden, attention_weights = decoder(dec_input, features, hidden)
 
         attention_plot[i] = tf.reshape(attention_weights, (-1,)).numpy()
@@ -199,19 +199,19 @@ def getText():
 
     body = request.get_json()
     image_base64 = str(body["image"])
-    
-    metadata, raw_image = image_base64.split(',')
-    raw_image_bytes = raw_image.encode('utf-8')
 
-    file_extension = metadata.split(';')[0].split('/')[-1]
-    file_name = 'imageToSave'    + file_extension
+    metadata, raw_image = image_base64.split(",")
+    raw_image_bytes = raw_image.encode("utf-8")
+
+    file_extension = metadata.split(";")[0].split("/")[-1]
+    file_name = "imageToSave" + file_extension
 
     with open(file_name, "wb") as fh:
         fh.write(base64.decodebytes(raw_image_bytes))
 
     result, _ = evaluate(file_name)
 
-    return jsonify({"result": ' '.join(result[:-1])}), 200
+    return jsonify({"result": " ".join(result[:-1])}), 200
 
 
 if __name__ == "__main__":
