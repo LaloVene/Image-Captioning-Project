@@ -3,11 +3,9 @@ services:
   web:
     container_name: web
     build: .
-    ports:
-      - "5000:80"
     restart: always
     env_file:
-      - ./example.env
+      - .env
     volumes:
       - .:/website
 
