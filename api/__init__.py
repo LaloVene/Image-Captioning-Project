@@ -193,12 +193,7 @@ def index():
     return "Works", 200
 
 
-@app.route("/health")
-def health():
-    return "Works", 200
-
-
-@app.route("/image", methods=["POST"])
+@app.route("/", methods=["POST"])
 def getText():
 
     body = request.get_json()
