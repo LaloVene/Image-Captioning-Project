@@ -214,7 +214,7 @@ def getText():
 
     result, _ = evaluate(image_path)
 
-    return jsonify({"result": result}), 200
+    return jsonify({"result": ' '.join(result)}), 200
 
 
 if __name__ == "__main__":
