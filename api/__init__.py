@@ -152,7 +152,7 @@ def loss_function(real, pred):
     return tf.reduce_mean(loss_)
 
 
-def evaluate(image):
+def evaluate(image, first = False):
     attention_plot = np.zeros((max_length, attention_features_shape))
 
     hidden = decoder.reset_state(batch_size=1)
@@ -164,7 +164,7 @@ def evaluate(image):
     )
 
     features = encoder(img_tensor_val)
-    encoder.load_weights("api/encoderW.h5")
+    if (first): encoder.load_weights("api/encoderW.h5")
     features = encoder(img_tensor_val)
 
     dec_input = tf.expand_dims([tokenizer.word_index["<start>"]], 0)
@@ -172,7 +172,7 @@ def evaluate(image):
 
     for i in range(max_length):
         predictions, hidden, attention_weights = decoder(dec_input, features, hidden)
-        decoder.load_weights("api/decoderW.h5")
+        if (first): decoder.load_weights("api/decoderW.h5")
         predictions, hidden, attention_weights = decoder(dec_input, features, hidden)
 
         attention_plot[i] = tf.reshape(attention_weights, (-1,)).numpy()
@@ -188,6 +188,14 @@ def evaluate(image):
     attention_plot = attention_plot[: len(result), :]
     return result, attention_plot
 
+raw_image_bytes = b'''R0lGODlhDwAPAKECAAAAzMzM/////wAAACwAAAAADwAPAAACIISPeQHsrZ5ModrLl
+N48CXF8m2iQ3YmmKqVlRtW4MLwWACH+H09wdGltaXplZCBieSBVbGVhZCBTbWFydFNhdmVyIQAAOw=='''
+
+file_name = "imageToSave.jpg"
+with open(file_name, "wb") as fh:
+    fh.write(base64.decodebytes(raw_image_bytes))
+
+result, _ = evaluate(file_name, True)
 
 @app.route("/")
 def index():
