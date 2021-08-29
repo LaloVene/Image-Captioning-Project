@@ -15,26 +15,31 @@ export class HomePage implements OnInit {
     {
       name: 'English',
       lang: 'en-GB',
+      translateLang: 'en',
       voice: 'Google UK English Male',
     },
     {
       name: 'Español',
       lang: 'es-US',
+      translateLang: 'es',
       voice: 'Google español de Estados Unidos',
     },
     {
       name: 'Français',
       lang: 'fr-FR',
+      translateLang: 'fr',
       voice: 'Google français',
     },
     {
       name: 'Deutsch',
       lang: 'de-DE',
+      translateLang: 'de',
       voice: 'Google Deutsch',
     },
     {
       name: 'Italiano',
       lang: 'it-IT',
+      translateLang: 'it',
       voice: 'Google italiano',
     },
   ];
@@ -46,11 +51,6 @@ export class HomePage implements OnInit {
     pitch: 1,
     voice: this.currentLanguage.voice,
     splitSentences: true,
-    listeners: {
-      onvoiceschanged: (voices) => {
-        console.log('Event voiceschanged', voices);
-      },
-    },
   };
 
   constructor(private sanitizer: DomSanitizer) {}
@@ -59,7 +59,7 @@ export class HomePage implements OnInit {
     this.initSpeak();
   }
   async takePicture() {
-    this.speak();
+    this.translateText('Hello world');
     const image = await Camera.getPhoto({
       quality: 100,
       allowEditing: false,
@@ -72,8 +72,25 @@ export class HomePage implements OnInit {
     );
   }
 
+  async translateText(text: string) {
+    if (this.currentLanguage.translateLang === 'en') {
+      this.speak(text);
+      return;
+    }
+    const res: any = await fetch('https://libretranslate.de/translate', {
+      method: 'POST',
+      body: JSON.stringify({
+        q: text,
+        source: 'en',
+        target: this.currentLanguage.translateLang,
+      }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+    const data = await res.json();
+    this.speak(data.translatedText);
+  }
+
   onLanguageChange() {
-    console.log(1);
     this.speechOptions.lang = this.currentLanguage.lang;
     this.speechOptions.voice = this.currentLanguage.voice;
     this.initSpeak();
@@ -81,30 +98,10 @@ export class HomePage implements OnInit {
 
   async initSpeak() {
     const data = await this.speech.init(this.speechOptions);
-    console.log('Speech is ready, voices are available', data);
+    // console.log('Speech is ready, voices are available', data);
   }
 
-  speak() {
-    this.speech
-      .speak({
-        text: 'Hello World',
-        queue: false, // current speech will be interrupted,
-        listeners: {
-          onstart: () => {
-            // executed when the speaking starts
-            console.log('Start utterance');
-          },
-          onend: () => {
-            // executed when the speaking ends
-            console.log('End utterance');
-          },
-        },
-      })
-      .then(() => {
-        // Do something after speaking
-      })
-      .catch((e: any) => {
-        console.error('An error occurred :', e);
-      });
+  async speak(text: string) {
+    await this.speech.speak({ text, queue: false });
   }
 }
