@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import Speech from 'speak-tts';
@@ -73,7 +74,7 @@ export class HomePage implements OnInit {
       voice: 'Google 日本語',
     },
     {
-      name: '日本語',
+      name: '普通话',
       lang: 'zh-CN',
       translateLang: 'zh',
       voice: 'Google 普通话（中国大陆）',
@@ -89,7 +90,7 @@ export class HomePage implements OnInit {
     splitSentences: true,
   };
 
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(private sanitizer: DomSanitizer, private loadingController: LoadingController) {}
 
   ngOnInit() {
     this.initSpeak();
@@ -102,6 +103,7 @@ export class HomePage implements OnInit {
       resultType: CameraResultType.Base64,
       source: CameraSource.Camera,
     });
+    this.presentLoading();
 
     const res: any = await fetch('http://35.193.243.91/image', {
       method: 'POST',
@@ -117,6 +119,7 @@ export class HomePage implements OnInit {
 
   async translateText(text: string) {
     if (this.currentLanguage.translateLang === 'en') {
+      this.loadingController.dismiss();
       this.speak(text);
       return;
     }
@@ -130,6 +133,7 @@ export class HomePage implements OnInit {
       headers: { 'Content-Type': 'application/json' },
     });
     const data = await res.json();
+    this.loadingController.dismiss();
     this.speak(data.translatedText);
   }
 
@@ -146,5 +150,16 @@ export class HomePage implements OnInit {
 
   async speak(text: string) {
     await this.speech.speak({ text, queue: false });
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      cssClass: 'my-custom-class',
+      message: 'Please wait...',
+      mode: 'ios'
+    });
+    await loading.present();
+
+    console.log('Loading dismissed!');
   }
 }
