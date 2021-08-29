@@ -105,7 +105,7 @@ export class HomePage implements OnInit {
     });
     this.presentLoading();
 
-    const res: any = await fetch('http://35.193.243.91/image', {
+    const res: any = await fetch('https://seeyourworld.duckdns.org/image', {
       method: 'POST',
       body: JSON.stringify({
         format: image.format,
