@@ -63,13 +63,9 @@ export class HomePage implements OnInit {
     const image = await Camera.getPhoto({
       quality: 100,
       allowEditing: false,
-      resultType: CameraResultType.DataUrl,
+      resultType: CameraResultType.Base64,
       source: CameraSource.Camera,
     });
-
-    this.photo = this.sanitizer.bypassSecurityTrustResourceUrl(
-      image && image.dataUrl
-    );
   }
 
   async translateText(text: string) {

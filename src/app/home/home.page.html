@@ -6,7 +6,9 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content color="dark" [fullscreen]="true">
+
+  <ion-img id="backgroundImg" src="../assets/background.jpg"></ion-img>
 
   <ion-item class="languageContainer">
     <ion-label>Language</ion-label>
@@ -17,11 +19,11 @@
     </ion-select>
   </ion-item>
 
-  <img [src]="photo">
 
-  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button (click)="takePicture()">
-      <ion-icon name="camera"></ion-icon>
-    </ion-fab-button>
+  <ion-fab id="cameraBtnBackground">
+    <!--<img [src]="photo" id="imgPreview" vertical="center" horizontal="center"> -->
+    <ion-button color="light" id="cameraBtn" (click)="takePicture()">
+      <ion-icon id="cameraIcon" name="camera"></ion-icon>
+    </ion-button>
   </ion-fab>  
 </ion-content>
