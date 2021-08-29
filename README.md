@@ -9,6 +9,9 @@ This project consists of a web and mobile based app that generates captions from
 
 This can be run in a Web Browser or compiled to an Adroid or IOS device using the Ionic Capacitor tool.
 
+[![License](https://img.shields.io/github/license/LaloVene/Image-Captioning-Project)](https://github.com/LaloVene/Image-Captioning-Project/blob/main/LICENSE)
+[![Monitoring](https://img.shields.io/website?url=https%3A%2F%2Fsee-your-world.web.app)](https://see-your-world.web.app)
+
 ## 📍 Table of Contents
 - [Technologies Used](https://github.com/LaloVene/MLH-PE-Project#-technologies-used)
 - [Architecture](https://github.com/LaloVene/MLH-PE-Project#-architecture)
@@ -36,6 +39,9 @@ The architecture of the app is composed by a client app that captures images and
 - Once an image is passed as input to the Captioning Neural Network it returns a text caption that is returned to the client app.
 - Finally, the client app presents the text caption as an audio output that is being translated to any of the 11 available languages using text-to-speech, once the audio is finished the app returns to the main activity.
 - The client app can be used in a Web Browser or compiled to an Android or IOS device by using Ionic.
+- Response time under 1.5 seconds
+
+![image](https://user-images.githubusercontent.com/54692916/131257895-673830e5-4e89-43a2-87f4-bb6a80956ca8.png)
 
 
 ## 🔍 Site Overview
@@ -100,6 +106,3 @@ $ ionic serve
  
 ## 📝 Contributing
 Contributions are welcome! Please refer to the guidelines.
-
-
-
