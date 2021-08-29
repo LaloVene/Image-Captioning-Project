@@ -5,7 +5,7 @@ services:
     build: .
     restart: always
     env_file:
-      - .env
+      - ./example.env
     volumes:
       - .:/website
 
