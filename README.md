@@ -33,15 +33,19 @@ This can be run in a Web Browser or compiled to an Adroid or IOS device using th
 - Python
 - Typescript
 
-## 📚 Architecture
+## 📚 Workflow
 
 The architecture of the app is composed by a client app that captures images and a server app that process the images using a Deep Learning model and returns the generated captions.
+
+![Architecture](https://user-images.githubusercontent.com/61255738/131258282-22440175-8598-44af-bc6e-0d0a61b839dc.png)
+
 - The client app is an Ionic Angular app takes a picture and encodes the captured image to a base64 string that is sent through a POST request to the server.
 - The server app is a Flask container running in Docker that holds a trained Captioning Neural Network composed of a Convolutional Neural Network to extract features of an image and a Recurrent Neural Network that generated captions from the features of the image using a Long Short Term Memory model.
 - Once an image is passed as input to the Captioning Neural Network it returns a text caption that is returned to the client app.
 - Finally, the client app presents the text caption as an audio output that is being translated to any of the 11 available languages using text-to-speech, once the audio is finished the app returns to the main activity.
 - The client app can be used in a Web Browser or compiled to an Android or IOS device by using Ionic.
 - Response time under 1.5 seconds
+
 
 ![image](https://user-images.githubusercontent.com/54692916/131257895-673830e5-4e89-43a2-87f4-bb6a80956ca8.png)
 
