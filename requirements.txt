@@ -4,7 +4,6 @@ cffi==1.14.5
 click==8.0.1
 Flask==2.0.1
 numpy
-pillow
 tensorflow
 greenlet==1.1.0
 gunicorn==20.1.0

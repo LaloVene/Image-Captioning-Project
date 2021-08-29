@@ -1,13 +1,14 @@
 import tensorflow as tf
 import numpy as np
 import pickle
-from PIL import Image
 from flask import Flask, request, jsonify
 from dotenv import load_dotenv
 import base64
+from flask_cors import CORS
 
 load_dotenv()
 app = Flask(__name__)
+CORS(app)
 
 
 def load_image(image_path):
