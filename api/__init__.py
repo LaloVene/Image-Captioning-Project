@@ -212,7 +212,7 @@ def getText():
     image_extension = image_url[-4:]
     image_path = tf.keras.utils.get_file("image" + image_extension, origin=image_url)
 
-    result = evaluate(image_path)
+    result, _ = evaluate(image_path)
 
     return result
 
