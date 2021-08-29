@@ -199,15 +199,12 @@ def getText():
 
     body = request.get_json()
     image_base64 = str(body["image"])
+    file_extension = str(body["format"])
 
-    metadata, raw_image = image_base64.split(",")
-    raw_image_bytes = raw_image.encode("utf-8")
-
-    file_extension = metadata.split(";")[0].split("/")[-1]
     file_name = "imageToSave" + file_extension
 
     with open(file_name, "wb") as fh:
-        fh.write(base64.decodebytes(raw_image_bytes))
+        fh.write(base64.decodebytes(image_base64))
 
     result, _ = evaluate(file_name)
 
