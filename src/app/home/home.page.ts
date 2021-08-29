@@ -58,14 +58,27 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.initSpeak();
   }
+
   async takePicture() {
-    this.translateText('Hello world');
+    this.speak("Hello World")
     const image = await Camera.getPhoto({
       quality: 100,
       allowEditing: false,
       resultType: CameraResultType.Base64,
       source: CameraSource.Camera,
     });
+
+    const res: any = await fetch('http://35.193.243.91/image', {
+      method: 'POST',
+      body: JSON.stringify({
+        format: image.format,
+        image: image.base64String
+      }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+    const data = await res.json();
+    this.speak(data.result);
+    
   }
 
   async translateText(text: string) {
@@ -94,7 +107,7 @@ export class HomePage implements OnInit {
 
   async initSpeak() {
     const data = await this.speech.init(this.speechOptions);
-    // console.log('Speech is ready, voices are available', data);
+    console.log('Speech is ready, voices are available', data);
   }
 
   async speak(text: string) {
