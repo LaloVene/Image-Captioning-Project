@@ -4,6 +4,8 @@
 
 By Eduardo Venegas, Moises Chávez, Leonardo Galindo, and Alberto Cortés.
 
+DEMO: https://youtu.be/mwhK7TP2GxQ
+
 ## 📖 Project Overview
 Technology is a great way to help those in need, as it continous to develop it also presents new possibilities, one such being human vision aided and complemented by computer vision. 
 
@@ -15,12 +17,13 @@ This can be run in a Web Browser or compiled to an Adroid or IOS device using th
 [![Monitoring](https://img.shields.io/website?url=https%3A%2F%2Fsee-your-world.web.app)](https://see-your-world.web.app)
 
 ## 📍 Table of Contents
-- [Technologies Used](https://github.com/LaloVene/MLH-PE-Project#-technologies-used)
-- [Architecture](https://github.com/LaloVene/MLH-PE-Project#-architecture)
-- [Site Overview](https://github.com/LaloVene/MLH-PE-Project#-site-overview)
-- [Installation](https://github.com/LaloVene/MLH-PE-Project#%EF%B8%8F-installation)
-- [Usage](https://github.com/LaloVene/MLH-PE-Project#-usage)
-- [Contributing](https://github.com/LaloVene/MLH-PE-Project#-contributing)
+- [Technologies Used](https://github.com/LaloVene/Image-Captioning-Project#-technologies-used)
+- [Architecture](https://github.com/LaloVene/Image-Captioning-Project#-architecture)
+- [Site Overview](https://github.com/LaloVene/Image-Captioning-Project#-site-overview)
+- [Installation](https://github.com/LaloVene/Image-Captioning-Project#%EF%B8%8F-installation)
+- [Usage](https://github.com/LaloVene/Image-Captioning-Project#-usage)
+- [Contributing](https://github.com/LaloVene/Image-Captioning-Project#-contributing)
+- [CI/CD](https://github.com/LaloVene/Image-Captioning-Project#-cicd)
 
 
 ## 💻 Technologies Used
