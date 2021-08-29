@@ -215,7 +215,7 @@ def getText():
 
     result, _ = evaluate(file_name)
 
-    return jsonify({"result": ' '.join(result)}), 200
+    return jsonify({"result": ' '.join(result[:-2])}), 200
 
 
 if __name__ == "__main__":
