@@ -41,17 +41,20 @@ The architecture of the app is composed by a client app that captures images and
 ## 🔍 Site Overview
 ### Home Page
 Users can select the language of the audio output and press the button that launches a camera intent.
+
 ![image](https://user-images.githubusercontent.com/54692916/131256594-73b379a5-84ef-4229-94e6-21510fceaeb6.png)
 ![image](https://user-images.githubusercontent.com/54692916/131256732-57df4d0c-cbe3-4670-9aa5-0dd0db225981.png)
 
 
 ### Supported Languages
 Currently 11 languages are being supported, handling translations and pronunciation.
+
 ![image](https://user-images.githubusercontent.com/54692916/131256623-abb2ad49-d66a-4db4-8e23-ddc8260bd8a2.png)
 
 
 ### Camera Page
 The user can capture an image and confirm or reject the captured image.
+
 ![image](https://user-images.githubusercontent.com/54692916/131256608-ccb96b21-5640-4109-befc-893730127e67.png)
 
 ## 🤖 CI/CD
