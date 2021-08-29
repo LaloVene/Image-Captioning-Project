@@ -165,7 +165,6 @@ def evaluate(image, first = False):
 
     features = encoder(img_tensor_val)
     if (first): encoder.load_weights("api/encoderW.h5")
-    features = encoder(img_tensor_val)
 
     dec_input = tf.expand_dims([tokenizer.word_index["<start>"]], 0)
     result = []
@@ -173,7 +172,6 @@ def evaluate(image, first = False):
     for i in range(max_length):
         predictions, hidden, attention_weights = decoder(dec_input, features, hidden)
         if (first): decoder.load_weights("api/decoderW.h5")
-        predictions, hidden, attention_weights = decoder(dec_input, features, hidden)
 
         attention_plot[i] = tf.reshape(attention_weights, (-1,)).numpy()
 
