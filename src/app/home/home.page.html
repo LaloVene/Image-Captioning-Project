@@ -8,6 +8,8 @@
 
 <ion-content [fullscreen]="true">
 
+  <ion-img id="backgroundImg" src="../assets/background.jpg"></ion-img>
+
   <ion-item class="languageContainer">
     <ion-label>Language</ion-label>
     <ion-select [(ngModel)]="currentLanguage" (ionChange)="onLanguageChange()" placeholder="Select One" interface="popover">
@@ -21,7 +23,7 @@
   <ion-fab id="cameraBtnBackground">
     <!--<img [src]="photo" id="imgPreview" vertical="center" horizontal="center"> -->
     <ion-button id="cameraBtn" (click)="takePicture()">
-      <ion-icon name="camera"></ion-icon>
+      <ion-icon id="cameraIcon" name="camera"></ion-icon>
     </ion-button>
   </ion-fab>  
 </ion-content>
