@@ -2,7 +2,7 @@ import tensorflow as tf
 import numpy as np
 import pickle
 from PIL import Image
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -214,7 +214,7 @@ def getText():
 
     result, _ = evaluate(image_path)
 
-    return result
+    return jsonify({"result": result}), 200
 
 
 if __name__ == "__main__":
