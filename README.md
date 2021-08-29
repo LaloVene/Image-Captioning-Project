@@ -1,3 +1,5 @@
+<img src="https://user-images.githubusercontent.com/54692916/131258136-a508bb2d-af12-430a-bb50-aae2a35fd18d.png" width="280">
+
 # Image-Captioning-Project
 
 By Eduardo Venegas, Moises Chávez, Leonardo Galindo, and Alberto Cortés.
