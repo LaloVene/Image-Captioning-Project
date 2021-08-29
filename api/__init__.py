@@ -201,7 +201,7 @@ def getText():
     image_base64 = str(body["image"])
     file_extension = str(body["format"])
 
-    file_name = "imageToSave" + file_extension
+    file_name = "imageToSave." + file_extension
 
     with open(file_name, "wb") as fh:
         fh.write(base64.decodebytes(image_base64))
